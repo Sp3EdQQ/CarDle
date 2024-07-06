@@ -3,8 +3,8 @@
 ## ToDo list
 ### SETUP
 - [x] Readme creation
-- [ ] Setup React application based on TypeScript
-- [ ] Setup Tailwind CSS
+- [x] Setup React application based on TypeScript
+- [x] Setup Tailwind CSS
 ### APP
 - [ ] Develop UI
 - [ ] Integrate with Cars API
