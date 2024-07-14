@@ -8,8 +8,8 @@ const App = () => {
     <div className="bg-[url('src/assets/images/Background/bg.webp')] bg-fixed bg-cover min-h-dvh gap-y-5 flex flex-col items-center text-slate-50">
       <MainLogo className="size-1/3 my-3 " />
       <ColorsLegend />
-      <CarAttributes />
       <SearchBar />
+      <CarAttributes />
     </div>
   )
 }
