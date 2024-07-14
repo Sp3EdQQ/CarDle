@@ -4,8 +4,9 @@ export const SearchBar = () => {
 
   return (
     <div className="flex gap-x-3">
-      <input type="text" placeholder="Nazwa" className={inputTextClasses} />
-      <button className={buttonClasses}>Wyślij</button>
+      <input type="text" placeholder="Brand" className={inputTextClasses} />
+      <input type="text" placeholder="Model" className={inputTextClasses} />
+      <button className={buttonClasses}>Check</button>
     </div>
   )
 }

@@ -1,14 +1,15 @@
 import { SearchBar } from "./components/SearchBar"
 import { CarAttributes } from "./components/CarAttributes.tsx"
+import MainLogo from "./assets/images/Logo/logo-no-background.svg?react"
+import { ColorsLegend } from "./components/ColorsLegend.tsx"
 
 const App = () => {
-  const wrapperClasses =
-    "bg-slate-800 gap-y-3 h-full min-h-dvh flex flex-col items-center justify-center text-slate-50"
-
   return (
-    <div className={wrapperClasses}>
-      <SearchBar />
+    <div className="bg-[url('src/assets/images/Background/bg.webp')] bg-fixed bg-cover min-h-dvh gap-y-5 flex flex-col items-center text-slate-50">
+      <MainLogo className="size-1/3 my-3 " />
+      <ColorsLegend />
       <CarAttributes />
+      <SearchBar />
     </div>
   )
 }
