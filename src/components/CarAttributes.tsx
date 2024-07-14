@@ -1,4 +1,4 @@
-import { cx } from "../utils/cx.ts"
+import { cx } from "../utils/cx"
 
 const labels = ["Brand", "Model", "Horsepower", "Year", "Drive"]
 const attributesArray = [

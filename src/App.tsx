@@ -1,7 +1,7 @@
 import { SearchBar } from "./components/SearchBar"
-import { CarAttributes } from "./components/CarAttributes.tsx"
+import { CarAttributes } from "./components/CarAttributes"
 import MainLogo from "./assets/images/Logo/logo-no-background.svg?react"
-import { ColorsLegend } from "./components/ColorsLegend.tsx"
+import { ColorsLegend } from "./components/ColorsLegend"
 
 const App = () => {
   return (
