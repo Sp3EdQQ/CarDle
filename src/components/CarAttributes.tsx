@@ -1,6 +1,6 @@
 import { cx } from "../utils/cx"
 
-const labels = ["Brand", "Model", "Horsepower", "Year", "Drive"]
+const labels = ["Brand", "Model", "Class", "Year", "Drive"]
 const attributesArray = [
   { brand: "Toyota", model: "Supra", hp: 300, year: 2019, drive: "RWD" },
   { brand: "Honda", model: "Civic", hp: 158, year: 2020, drive: "FWD" },

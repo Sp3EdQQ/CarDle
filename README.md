@@ -6,6 +6,6 @@
 - [x] Setup React application based on TypeScript
 - [x] Setup Tailwind CSS
 ### APP
-- [ ] Develop UI
+- [x] Develop UI
 - [ ] Integrate with Cars API
 - [ ] Displaying data from API
