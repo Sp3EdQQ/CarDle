@@ -1,4 +1,5 @@
 import { cx } from "../utils/cx"
+import { useQuery } from "@tanstack/react-query"
 
 const labels = ["Brand", "Model", "Class", "Year", "Drive"]
 const attributesArray = [
@@ -30,6 +31,17 @@ const labelStyleRed = cx(defaultLabelStyle, "bg-red-500")
 const labelStyleYellow = cx(defaultLabelStyle, "bg-orange-500")
 
 export const CarAttributes = () => {
+  const { isPending, error, data } = useQuery({
+    queryKey: ["Cars"],
+    queryFn: () =>
+      fetch("https://api.api-ninjas.com/v1/cars?limit=2&make=toyota", {
+        headers: {
+          "X-API-KEY": import.meta.env.VITE_API_KEY
+        }
+      }).then(res => res.json())
+  })
+  console.log(data)
+
   return (
     <div className="flex flex-col gap-y-5 backdrop-blur pb-6 text-shadow">
       <div className={attributesLabelsClasses}>
