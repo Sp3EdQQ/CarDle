@@ -1,6 +1,6 @@
 import type { Collection } from "./shared"
 
-type Model = {
+export type Model = {
   id: number
   make_id: number
   name: string

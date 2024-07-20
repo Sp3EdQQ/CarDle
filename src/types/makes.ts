@@ -1,6 +1,6 @@
 import type { Collection } from "./shared"
 
-type Make = {
+export type Make = {
   id: number
   name: string
 }
