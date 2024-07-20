@@ -1,19 +1,22 @@
 import { useMutation, useQuery } from "@tanstack/react-query"
-import { GetMakesRespone, Make } from "../types/makes.ts"
-import { ChangeEvent, useState } from "react"
+import { GetMakesRespone } from "../types/makes.ts"
+import { useState } from "react"
 import { Model } from "../types/models.ts"
+import Select from "react-select"
 
 const buttonClasses = "rounded-md bg-rose-600 text-white py-1 px-2"
 const inputTextClasses = "rounded-md text-black py-2 px-2"
 
 export const SearchBar = () => {
-  const [make, setMake] = useState<Make | undefined>()
+  const [selectedMake, setSelectedMake] = useState<
+    { label: string; value: string } | undefined
+  >()
   const [models, setModels] = useState<Model[] | undefined>()
 
   const { data: makesResponse } = useQuery<GetMakesRespone>({
     queryKey: ["Makes"],
     queryFn: () =>
-      fetch("https://car-api2.p.rapidapi.com/api/makes?direction=desc&sort=id", {
+      fetch("https://car-api2.p.rapidapi.com/api/makes?direction=asc&sort=id", {
         headers: {
           "Content-Type": "application/json",
           "x-rapidapi-host": "car-api2.p.rapidapi.com",
@@ -25,7 +28,7 @@ export const SearchBar = () => {
   const mutation = useMutation({
     mutationFn: () =>
       fetch(
-        `https://car-api2.p.rapidapi.com/api/models?sort=id&make=${make?.name}&year=2019&direction=asc`,
+        `https://car-api2.p.rapidapi.com/api/models?sort=id&make=${selectedMake?.value}&year=2019&direction=asc`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -37,41 +40,29 @@ export const SearchBar = () => {
     onSuccess: data => setModels(data?.data)
   })
 
-  const handleMakeOnChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setMake(
-      makesResponse?.data.filter(({ name }) =>
-        name.toLowerCase().startsWith(event.target.value.toLowerCase())
-      )[0]
-    )
+  const handleModelOnChange = (option: { label: string; value: string }) => {
+    setSelectedMake(option)
     mutation.mutate()
   }
 
-  const handleModelOnChange = (event: ChangeEvent<HTMLInputElement>) => {
-    console.log(
-      models?.filter(({ name }) =>
-        name.toLowerCase().includes(event.target.value.toLowerCase())
-      )
-    )
-  }
+  const makeOptions = makesResponse?.data.map(({ name }) => ({
+    label: name,
+    value: name
+  }))
 
-  console.log(make)
-  console.log(models)
+  const modelOptions = models?.map(({ name }) => ({
+    label: name,
+    value: name
+  }))
 
   return (
     <div className="flex gap-x-3">
-      <input
-        type="text"
-        placeholder="Brand"
-        className={inputTextClasses}
-        onChange={handleMakeOnChange}
-      />
-
-      <input
-        type="text"
-        placeholder="Model"
-        className={inputTextClasses}
+      <Select
+        className="text-black"
+        options={makeOptions}
         onChange={handleModelOnChange}
       />
+      <Select className="text-black" options={modelOptions} />
       <button className={buttonClasses}>Check</button>
     </div>
   )
