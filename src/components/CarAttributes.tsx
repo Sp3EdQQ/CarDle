@@ -1,35 +1,18 @@
 import { cx } from "../utils/cx"
+import { GetCarInfo } from "../types/carInfo"
 
-const labels = ["Brand", "Model", "Class", "Year", "Drive"]
-const attributesArray = [
-  { brand: "Toyota", model: "Supra", hp: 300, year: 2019, drive: "RWD" },
-  { brand: "Honda", model: "Civic", hp: 158, year: 2020, drive: "FWD" },
-  { brand: "Ford", model: "Mustang", hp: 450, year: 2021, drive: "RWD" },
-  { brand: "Chevrolet", model: "Camaro", hp: 275, year: 2019, drive: "RWD" },
-  { brand: "BMW", model: "M3", hp: 473, year: 2021, drive: "RWD" },
-  { brand: "Audi", model: "A4", hp: 248, year: 2020, drive: "AWD" },
-  { brand: "Mercedes-Benz", model: "C-Class", hp: 255, year: 2021, drive: "RWD" },
-  { brand: "BMW", model: "M3", hp: 473, year: 2021, drive: "RWD" },
-  { brand: "Audi", model: "A4", hp: 248, year: 2020, drive: "AWD" },
-  { brand: "BMW", model: "M3", hp: 473, year: 2021, drive: "RWD" },
-  { brand: "Audi", model: "A4", hp: 248, year: 2020, drive: "AWD" },
-  { brand: "BMW", model: "M3", hp: 473, year: 2021, drive: "RWD" },
-  { brand: "Audi", model: "A4", hp: 248, year: 2020, drive: "AWD" },
-  { brand: "BMW", model: "M3", hp: 473, year: 2021, drive: "RWD" },
-  { brand: "Audi", model: "A4", hp: 248, year: 2020, drive: "AWD" }
-]
+const labels = ["Brand", "Model", "Year", "Horsepower", "Torque", "Cylinders", "Drive"]
 
 const attributesLabelsClasses =
-  " rounded-t-lg grid grid-cols-5 w-full max-w-screen-xl text-lg font-bold py-7 *:text-center"
-const attributesStyle = "grid grid-cols-5 w-full max-w-screen-xl"
-
+  "rounded-t-lg grid grid-cols-7 w-full max-w-screen-xl text-lg font-bold py-7 *:text-center"
+const attributesStyle = "grid grid-cols-7 w-full max-w-screen-xl *:mx-1"
 const defaultLabelStyle =
-  "rounded-lg aspect-square w-full max-w-24 content-center text-center text-lg mx-auto"
+  "rounded-lg aspect-square w-full max-w-32 content-center text-center text-lg mx-auto uppercase"
 const labelStyleGreen = cx(defaultLabelStyle, "bg-green-600")
 const labelStyleRed = cx(defaultLabelStyle, "bg-red-500")
 const labelStyleYellow = cx(defaultLabelStyle, "bg-orange-500")
 
-export const CarAttributes = () => {
+export const CarAttributes = ({ carInfo }: { carInfo: GetCarInfo[] }) => {
   return (
     <div className="flex flex-col gap-y-5 backdrop-blur pb-6 text-shadow">
       <div className={attributesLabelsClasses}>
@@ -38,14 +21,18 @@ export const CarAttributes = () => {
         })}
       </div>
       <div className="flex flex-col w-full gap-y-4">
-        {attributesArray.map(({ brand, model, hp, year, drive }, index) => {
+        {carInfo.map(({ make_model, year, make_model_trim_engine }, index) => {
           return (
             <div key={index} className={attributesStyle}>
-              <div className={labelStyleGreen}>{brand}</div>
-              <div className={labelStyleRed}>{model}</div>
-              <div className={labelStyleYellow}>{hp}</div>
-              <div className={labelStyleRed}>{year}</div>
-              <div className={labelStyleGreen}>{drive}</div>
+              <div className={labelStyleGreen}>{make_model.make.name}</div>
+              <div className={labelStyleRed}>{make_model.name}</div>
+              <div className={labelStyleYellow}>{year}</div>
+              <div className={labelStyleGreen}>
+                {make_model_trim_engine.horsepower_hp}
+              </div>
+              <div className={labelStyleRed}>{make_model_trim_engine.torque_rpm}</div>
+              <div className={labelStyleGreen}>{make_model_trim_engine.cylinders}</div>
+              <div className={labelStyleYellow}>{make_model_trim_engine.drive_type}</div>
             </div>
           )
         })}
