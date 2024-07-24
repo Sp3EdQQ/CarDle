@@ -7,5 +7,7 @@
 - [x] Setup Tailwind CSS
 ### APP
 - [x] Develop UI
-- [ ] Integrate with Cars API
-- [ ] Displaying data from API
+- [x] Integrate with Cars API
+- [x] Displaying data from API
+- [ ] Prepare guessing logic
+- [ ] Finalization
