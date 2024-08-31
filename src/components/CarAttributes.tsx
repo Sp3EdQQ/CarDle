@@ -30,7 +30,7 @@ export const CarAttributes = ({ carInfo }: { carInfo: GetCarInfo[] }) => {
             <div key={index} className={attributesStyle}>
               <GuessTile
                 expectedValue={RandomisedCar?.make}
-                value={make_model.make.name}
+                value={make_model?.make?.name}
               />
               <GuessTile expectedValue={RandomisedCar?.model} value={make_model.name} />
 

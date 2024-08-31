@@ -1,4 +1,4 @@
-import ArrowD from "../assets/images/Arrow/arrow.svg?react"
+import ArrowD from "../assets/images/Tiles/arrow.svg?react"
 
 export const ColorsLegend = () => {
   return (

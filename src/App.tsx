@@ -18,7 +18,7 @@ const App = () => {
     if (randomCar) {
       localStorage.setItem("randomCar", JSON.stringify(randomCar))
     }
-  }, [])
+  }, [randomCar])
 
   return (
     <div className="bg-[url('src/assets/images/Background/bg.webp')] bg-fixed bg-cover min-h-dvh gap-y-5 flex flex-col items-center text-slate-50">
