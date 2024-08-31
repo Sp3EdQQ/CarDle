@@ -25,7 +25,9 @@ export const SearchBar = ({ setCarInfo }: SearchBarProps) => {
   const { data: makesResponse } = useMakes()
   const modelsMutation = useModelsMutation(setModels)
   const trimsMutation = useTrimMutation(setTrims)
-  const paramMutation = useParamMutation(setCarInfo)
+  const getCustomSetCarInfo = (data: GetCarInfo) => setCarInfo(prev => [...prev, data])
+  const paramMutation = useParamMutation(getCustomSetCarInfo)
+
   const [selectedTrim, setSelectedTrim] = useState<
     { label: string; value: number } | undefined
   >()

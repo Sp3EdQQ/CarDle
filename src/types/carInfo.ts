@@ -91,3 +91,13 @@ export type GetCarInfo = {
   make_model_trim_body: Body
   make_model: Model
 }
+
+export type GetCarInfoImportant = {
+  make: string
+  model: string
+  year: number
+  horsepower: number
+  torque: number
+  cylinders: string
+  drive: string
+}
