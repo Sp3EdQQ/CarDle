@@ -90,7 +90,7 @@ export const SearchBar = ({ setCarInfo }: SearchBarProps) => {
       />
       <Select options={trimOptions} onChange={handleTrimOnChange} value={selectedTrim} />
       <button
-        className="rounded-md bg-green-600 text-white py-1 px-2"
+        className="rounded-md bg-gradient-to-r from-violet-600 to-purple-600 text-white py-1 px-2"
         onClick={() => {
           paramMutation.mutate(selectedTrim?.value)
           setSelectedMake(null)
