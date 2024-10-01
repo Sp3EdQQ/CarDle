@@ -14,6 +14,18 @@ export const useRandomCar = () => {
   const [randomCar, setRandomCar] = useState<GetCarInfoImportant | null>(null)
 
   const getRandomCar = (data: GetCarInfo) => {
+    if (
+      !data.make_model ||
+      !data.make_model.make.name ||
+      !data.make_model.name ||
+      !data.make_model_trim_engine.horsepower_hp ||
+      !data.make_model_trim_engine.torque_rpm ||
+      !data.make_model_trim_engine.cylinders ||
+      !data.make_model_trim_engine.drive_type
+    ) {
+      resetRandomSelection()
+    }
+
     setRandomCar({
       make: data.make_model.make.name,
       model: data.make_model.name,
@@ -25,7 +37,13 @@ export const useRandomCar = () => {
     })
   }
 
-  const paramMutation = useParamMutation(getRandomCar)
+  const resetRandomSelection = () => {
+    const randomMake = getRandomMake()
+    if (randomMake) {
+      setSelectedMake(randomMake)
+      modelsMutation.mutate(randomMake)
+    }
+  }
 
   const { data: makesResponse } = useMakes()
 
@@ -50,6 +68,7 @@ export const useRandomCar = () => {
 
   const modelsMutation = useModelsMutation(getRandomModel)
   const trimMutation = useTrimMutation(getRandomTrim)
+  const paramMutation = useParamMutation(getRandomCar)
 
   useEffect(() => {
     const randomMake = getRandomMake()
@@ -68,5 +87,5 @@ export const useRandomCar = () => {
   useEffect(() => {
     if (selectedTrim?.id) paramMutation.mutate(selectedTrim?.id)
   }, [selectedTrim])
-  return randomCar
+  return { randomCar, resetRandomSelection }
 }

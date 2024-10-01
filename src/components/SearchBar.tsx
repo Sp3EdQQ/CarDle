@@ -34,36 +34,32 @@ export const SearchBar = ({ setCarInfo }: SearchBarProps) => {
   >()
   const [selectedTrim, setSelectedTrim] = useState<SelectTrimOption | undefined | null>()
 
+  const { data: makesResponse } = useMakes()
   const [models, setModels] = useState<Model[] | undefined>()
   const [trims, setTrims] = useState<Trim[] | undefined>()
-
-  const { data: makesResponse } = useMakes()
 
   const modelsMutation = useModelsMutation(setModels)
   const trimsMutation = useTrimMutation(setTrims)
   const paramMutation = useParamMutation(getCustomSetCarInfo)
 
-  const handleMakeOnChange = (
-    newValue: SingleValue<{ label: string; value: string }> | null
-  ) => {
+  const handleMakeOnChange = (newValue: SingleValue<SelectMakeOption> | null) => {
     if (newValue) {
+      setSelectedModel(null)
+      setSelectedTrim(null)
       setSelectedMake(newValue)
       modelsMutation.mutate(newValue.value)
     }
   }
 
-  const handleModelOnChange = (
-    newValue: SingleValue<{ label: string; value: string }> | null
-  ) => {
+  const handleModelOnChange = (newValue: SingleValue<SelectModelOption> | null) => {
     if (newValue) {
+      setSelectedTrim(null)
       setSelectedModel(newValue)
       trimsMutation.mutate({ make: selectedMake?.value, model: newValue.value })
     }
   }
 
-  const handleTrimOnChange = (
-    newValue: SingleValue<{ label: string; value: number }> | null
-  ) => {
+  const handleTrimOnChange = (newValue: SingleValue<SelectTrimOption> | null) => {
     if (newValue) {
       setSelectedTrim(newValue)
     }

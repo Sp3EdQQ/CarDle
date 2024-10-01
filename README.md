@@ -9,5 +9,5 @@
 - [x] Develop UI
 - [x] Integrate with Cars API
 - [x] Displaying data from API
-- [ ] Prepare guessing logic
-- [ ] Finalization
+- [x] Prepare guessing logic
+-  Finalization in progress...

@@ -9,9 +9,20 @@ import { useRandomCar } from "./hooks/useRandomCar"
 const App = () => {
   const [carInfo, setCarInfo] = useState<GetCarInfo[]>([])
 
-  const randomCar = useRandomCar()
+  const { randomCar, resetRandomSelection } = useRandomCar()
 
+  const handleCar = () => {
+    resetRandomSelection()
+  }
   useEffect(() => {
+    if (randomCar) {
+      localStorage.setItem("randomCar", JSON.stringify(randomCar))
+      console.log("Samochód zapisany w localStorage:", randomCar)
+    }
+  }, [randomCar])
+
+  /*
+useEffect(() => {
     if (localStorage.getItem("randomCar")) {
       return
     }
@@ -19,6 +30,7 @@ const App = () => {
       localStorage.setItem("randomCar", JSON.stringify(randomCar))
     }
   }, [randomCar])
+*/
 
   return (
     <div className="bg-[url('src/assets/images/Background/bg.webp')] bg-fixed bg-cover min-h-dvh gap-y-5 flex flex-col items-center text-slate-50">
@@ -26,6 +38,7 @@ const App = () => {
       <ColorsLegend />
       <SearchBar setCarInfo={setCarInfo} />
       <CarAttributes carInfo={carInfo} />
+      <button onClick={handleCar}>asdoufhasdif</button>
     </div>
   )
 }
