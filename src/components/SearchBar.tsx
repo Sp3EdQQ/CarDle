@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useState } from "react"
 import { Model } from "../types/models"
-import Select from "react-select"
+import Select, { SingleValue } from "react-select"
 import { Trim } from "../types/trims"
 import { useMakes } from "../hooks/useMakes"
 import { useModelsMutation } from "../hooks/useModelsMutation"
@@ -8,39 +8,65 @@ import { useTrimMutation } from "../hooks/useTrimMutation"
 import { useParamMutation } from "../hooks/useParamMutation"
 import { GetCarInfo } from "../types/carInfo"
 
-const buttonClasses = "rounded-md bg-rose-600 text-white py-1 px-2"
-type SelectOption = {
+type SelectMakeOption = {
   label: string
   value: string
 }
+type SelectModelOption = {
+  label: string
+  value: string
+}
+type SelectTrimOption = {
+  label: string
+  value: number
+}
+
 type SearchBarProps = {
   setCarInfo: Dispatch<SetStateAction<GetCarInfo[]>>
 }
 
 export const SearchBar = ({ setCarInfo }: SearchBarProps) => {
-  const [selectedMake, setSelectedMake] = useState<SelectOption | undefined>()
+  const getCustomSetCarInfo = (data: GetCarInfo) => setCarInfo(prev => [...prev, data])
+
+  const [selectedMake, setSelectedMake] = useState<SelectMakeOption | undefined | null>()
+  const [selectedModel, setSelectedModel] = useState<
+    SelectModelOption | undefined | null
+  >()
+  const [selectedTrim, setSelectedTrim] = useState<SelectTrimOption | undefined | null>()
+
   const [models, setModels] = useState<Model[] | undefined>()
   const [trims, setTrims] = useState<Trim[] | undefined>()
 
   const { data: makesResponse } = useMakes()
+
   const modelsMutation = useModelsMutation(setModels)
   const trimsMutation = useTrimMutation(setTrims)
-  const getCustomSetCarInfo = (data: GetCarInfo) => setCarInfo(prev => [...prev, data])
   const paramMutation = useParamMutation(getCustomSetCarInfo)
 
-  const [selectedTrim, setSelectedTrim] = useState<
-    { label: string; value: number } | undefined
-  >()
+  const handleMakeOnChange = (
+    newValue: SingleValue<{ label: string; value: string }> | null
+  ) => {
+    if (newValue) {
+      setSelectedMake(newValue)
+      modelsMutation.mutate(newValue.value)
+    }
+  }
 
-  const handleMakeOnChange = (option: SelectOption) => {
-    setSelectedMake(option)
-    modelsMutation.mutate(option.value)
+  const handleModelOnChange = (
+    newValue: SingleValue<{ label: string; value: string }> | null
+  ) => {
+    if (newValue) {
+      setSelectedModel(newValue)
+      trimsMutation.mutate({ make: selectedMake?.value, model: newValue.value })
+    }
   }
-  const handleModelOnChange = (option: SelectOption) => {
-    trimsMutation.mutate({ make: selectedMake?.value, model: option.value })
-  }
-  const handleTrimOnChange = (option: { label: string; value: number }) => {
-    setSelectedTrim(option)
+
+  const handleTrimOnChange = (
+    newValue: SingleValue<{ label: string; value: number }> | null
+  ) => {
+    if (newValue) {
+      setSelectedTrim(newValue)
+    }
   }
 
   const makeOptions = makesResponse?.data.map(({ name }) => ({
@@ -52,33 +78,29 @@ export const SearchBar = ({ setCarInfo }: SearchBarProps) => {
     label: name,
     value: name
   }))
+
   const trimOptions = trims?.map(({ description, id }) => ({
     label: description,
     value: id
   }))
 
   return (
-    <div className="flex gap-x-3">
+    <div className="flex gap-x-3 text-black">
+      <Select options={makeOptions} onChange={handleMakeOnChange} value={selectedMake} />
       <Select
-        className="text-black"
-        options={makeOptions}
-        onChange={handleMakeOnChange}
-      />
-      <Select
-        className="text-black"
         options={modelOptions}
         onChange={handleModelOnChange}
+        value={selectedModel}
       />
-      {
-        <Select
-          className="text-black"
-          options={trimOptions}
-          onChange={handleTrimOnChange}
-        />
-      }
+      <Select options={trimOptions} onChange={handleTrimOnChange} value={selectedTrim} />
       <button
-        className={buttonClasses}
-        onClick={() => paramMutation.mutate(selectedTrim?.value)}
+        className="rounded-md bg-green-600 text-white py-1 px-2"
+        onClick={() => {
+          paramMutation.mutate(selectedTrim?.value)
+          setSelectedMake(null)
+          setSelectedModel(null)
+          setSelectedTrim(null)
+        }}
       >
         Check
       </button>

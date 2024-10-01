@@ -6,7 +6,7 @@ const labels = ["Brand", "Model", "Year", "Horsepower", "Torque", "Cylinders", "
 
 const attributesLabelsClasses =
   "rounded-t-lg grid grid-cols-7 w-full max-w-screen-xl text-lg font-bold py-7 *:text-center"
-const attributesStyle = "grid grid-cols-7 w-full max-w-screen-xl *:mx-1"
+const attributesStyle = "grid grid-cols-7 max-w-screen-xl *:mx-1"
 
 export const CarAttributes = ({ carInfo }: { carInfo: GetCarInfo[] }) => {
   const [RandomisedCar, setRandomisedCar] = useState<GetCarInfoImportant | null>(null)
@@ -29,30 +29,33 @@ export const CarAttributes = ({ carInfo }: { carInfo: GetCarInfo[] }) => {
           return (
             <div key={index} className={attributesStyle}>
               <GuessTile
-                expectedValue={RandomisedCar?.make}
+                expectedValue={RandomisedCar?.make || ""}
                 value={make_model?.make?.name}
               />
-              <GuessTile expectedValue={RandomisedCar?.model} value={make_model.name} />
+              <GuessTile
+                expectedValue={RandomisedCar?.model || ""}
+                value={make_model.name}
+              />
 
-              <GuessTile expectedValue={RandomisedCar?.year} value={year} />
+              <GuessTile expectedValue={RandomisedCar?.year || ""} value={year} />
 
               <GuessTile
-                expectedValue={RandomisedCar?.horsepower}
+                expectedValue={RandomisedCar?.horsepower || ""}
                 value={make_model_trim_engine.horsepower_hp}
               />
 
               <GuessTile
-                expectedValue={RandomisedCar?.torque}
+                expectedValue={RandomisedCar?.torque || ""}
                 value={make_model_trim_engine.torque_rpm}
               />
 
               <GuessTile
-                expectedValue={RandomisedCar?.cylinders}
+                expectedValue={RandomisedCar?.cylinders || ""}
                 value={make_model_trim_engine.cylinders}
               />
 
               <GuessTile
-                expectedValue={RandomisedCar?.drive}
+                expectedValue={RandomisedCar?.drive || ""}
                 value={make_model_trim_engine.drive_type}
               />
             </div>

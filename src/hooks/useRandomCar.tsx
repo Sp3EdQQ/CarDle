@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react"
-import { GetCarInfo, GetCarInfoImportant } from "../types/carInfo.ts"
-import { Trim } from "../types/trims.ts"
-import { useParamMutation } from "./useParamMutation.ts"
-import { useMakes } from "./useMakes.ts"
-import { Model } from "../types/models.ts"
-import { useModelsMutation } from "./useModelsMutation.ts"
-import { useTrimMutation } from "./useTrimMutation.ts"
+import { GetCarInfo, GetCarInfoImportant } from "../types/carInfo"
+import { Trim } from "../types/trims"
+import { useParamMutation } from "./useParamMutation"
+import { useMakes } from "./useMakes"
+import { Model } from "../types/models"
+import { useModelsMutation } from "./useModelsMutation"
+import { useTrimMutation } from "./useTrimMutation"
 
 export const useRandomCar = () => {
   const [selectedMake, setSelectedMake] = useState("")
@@ -24,9 +24,11 @@ export const useRandomCar = () => {
       drive: data.make_model_trim_engine.drive_type
     })
   }
+
   const paramMutation = useParamMutation(getRandomCar)
 
   const { data: makesResponse } = useMakes()
+
   const getRandomMake = () => {
     const makes = makesResponse?.data.map(({ name }) => name) ?? []
     const randomMakesIndex = Math.floor(Math.random() * makes.length)
@@ -37,7 +39,6 @@ export const useRandomCar = () => {
     const modelsNames = models?.map(({ name }) => name)
     const randomModelsIndex = Math.floor(Math.random() * modelsNames?.length)
     const randomModel = modelsNames?.[randomModelsIndex]
-
     if (randomModel) setSelectedModel(randomModel)
   }
 

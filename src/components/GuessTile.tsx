@@ -26,7 +26,5 @@ export const GuessTile = ({ expectedValue, value }: GuessTileProps) => {
       return <InCorrect value={value} />
     }
   }
-  if (typeof value === null || expectedValue === null) {
-    return <Undefined />
-  }
+  return <Undefined />
 }
