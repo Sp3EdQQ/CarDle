@@ -5,6 +5,7 @@ import MainLogo from "./assets/images/Logo/logo-no-background.svg?react"
 import { useEffect, useState } from "react"
 import { GetCarInfo } from "./types/carInfo"
 import { useRandomCar } from "./hooks/useRandomCar"
+import { GenerateRandomCarButton } from "./components/RandomButton.tsx"
 import Background from "./assets/images/Background/bg.webp"
 
 const App = () => {
@@ -35,12 +36,7 @@ const App = () => {
     >
       <MainLogo className="size-1/3 my-3" />
       <ColorsLegend />
-      <button
-        className="bg-gradient-to-b from-gray-900 to-gray-600 p-3 rounded-md"
-        onClick={handleCar}
-      >
-        Randomise Car
-      </button>
+      <GenerateRandomCarButton onClick={handleCar} />
       <SearchBar setCarInfo={setCarInfo} />
       <CarAttributes carInfo={carInfo} />
     </div>

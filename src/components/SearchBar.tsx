@@ -101,7 +101,9 @@ export const SearchBar = ({ setCarInfo }: SearchBarProps) => {
         value={selectedTrim}
       />
       <button
-        className="rounded-md bg-gradient-to-r from-violet-600 to-purple-600 text-white py-1 px-2"
+        // disabled same gradient bcs gradient overwrite disabled class while disabled lmao
+        className="disabled:from-gray-800 disabled:to-gray-800 rounded-md bg-gradient-to-r from-violet-600 to-purple-600 text-white py-1 px-2"
+        disabled={!selectedMake || !selectedModel || !selectedTrim}
         onClick={() => {
           paramMutation.mutate(selectedTrim?.value)
           setSelectedMake(null)

@@ -2,11 +2,11 @@ import { GetCarInfo, GetCarInfoImportant } from "../types/carInfo"
 import { useEffect, useState } from "react"
 import { GuessTile } from "./GuessTile"
 
-const labels = ["Brand", "Model", "Year", "Horsepower", "Torque", "Cylinders", "Drive"]
+const labels = ["Brand", "Model", "Horsepower", "Torque", "Cylinders", "Drive"]
 
 const attributesLabelsClasses =
-  "rounded-t-lg grid grid-cols-7 w-full max-w-screen-xl text-lg font-bold py-7 *:text-center"
-const attributesStyle = "grid grid-cols-7 max-w-screen-xl *:mx-1"
+  "rounded-t-lg grid grid-cols-6 w-full max-w-screen-xl text-lg font-bold py-7 *:text-center"
+const attributesStyle = "grid grid-cols-6 max-w-screen-xl *:mx-1"
 
 export const CarAttributes = ({ carInfo }: { carInfo: GetCarInfo[] }) => {
   const [RandomisedCar, setRandomisedCar] = useState<GetCarInfoImportant | null>(null)
@@ -26,7 +26,7 @@ export const CarAttributes = ({ carInfo }: { carInfo: GetCarInfo[] }) => {
         })}
       </div>
       <div className="flex flex-col w-full gap-y-4">
-        {carInfo.map(({ make_model, year, make_model_trim_engine }, index) => {
+        {carInfo.map(({ make_model, make_model_trim_engine }, index) => {
           return (
             <div key={index} className={attributesStyle}>
               <GuessTile
@@ -37,8 +37,6 @@ export const CarAttributes = ({ carInfo }: { carInfo: GetCarInfo[] }) => {
                 expectedValue={RandomisedCar?.model || ""}
                 value={make_model.name}
               />
-
-              <GuessTile expectedValue={RandomisedCar?.year || ""} value={year} />
 
               <GuessTile
                 expectedValue={RandomisedCar?.horsepower || ""}
