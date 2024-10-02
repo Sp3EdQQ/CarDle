@@ -7,6 +7,16 @@ import { GetCarInfo, GetCarInfoImportant } from "./types/carInfo"
 import { useRandomCar } from "./hooks/useRandomCar"
 import { GenerateRandomCarButton } from "./components/RandomButton.tsx"
 import Background from "./assets/images/Background/bg.webp"
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle
+} from "@/components/ui/alert-dialog"
 
 const App = () => {
   const [carInfo, setCarInfo] = useState<GetCarInfo[]>([])
@@ -29,7 +39,6 @@ const App = () => {
     }
   }, [randomCar])
 
-  console.log(isWin)
   return (
     <div
       style={{ backgroundImage: `url(${Background})` }}
@@ -40,6 +49,32 @@ const App = () => {
       <GenerateRandomCarButton onClick={handleCar} />
       <SearchBar setCarInfo={setCarInfo} />
       <CarAttributes setIsWin={setIsWin} randomCar={localStorageHand} carInfo={carInfo} />
+      <AlertDialog open={isWin} onOpenChange={setIsWin}>
+        <AlertDialogContent className="bg-neutral-800 text-white border border-neutral-400">
+          <AlertDialogHeader>
+            <AlertDialogTitle className="text-2xl font-bold">
+              Congratulations!
+            </AlertDialogTitle>
+            <AlertDialogDescription className="text-white">
+              You have correcty guessed a car! Do you want to start a new game?
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel
+              onClick={() => setIsWin(false)}
+              className="bg-red-500 hover:bg-red-700 hover:text-white border-0 px-6 py-2 "
+            >
+              No
+            </AlertDialogCancel>
+            <AlertDialogAction
+              onClick={handleCar}
+              className="bg-green-500 hover:bg-green-700 px-6 py-2 "
+            >
+              Yes
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   )
 }
