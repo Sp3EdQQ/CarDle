@@ -5,6 +5,7 @@ import MainLogo from "./assets/images/Logo/logo-no-background.svg?react"
 import { useEffect, useState } from "react"
 import { GetCarInfo } from "./types/carInfo"
 import { useRandomCar } from "./hooks/useRandomCar"
+import Background from "./assets/images/Background/bg.webp"
 
 const App = () => {
   const [carInfo, setCarInfo] = useState<GetCarInfo[]>([])
@@ -27,7 +28,10 @@ const App = () => {
   }, [])
 
   return (
-    <div className="bg-[url('src/assets/images/Background/bg.webp')] bg-fixed bg-cover min-h-dvh gap-y-5 flex flex-col items-center text-slate-50">
+    <div
+      style={{ backgroundImage: `url(${Background})` }}
+      className="bg-fixed bg-cover min-h-dvh gap-y-5 flex flex-col items-center text-slate-50"
+    >
       <MainLogo className="size-1/3 my-3" />
       <ColorsLegend />
       <button

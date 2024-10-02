@@ -10,6 +10,7 @@ const attributesStyle = "grid grid-cols-7 max-w-screen-xl *:mx-1"
 
 export const CarAttributes = ({ carInfo }: { carInfo: GetCarInfo[] }) => {
   const [RandomisedCar, setRandomisedCar] = useState<GetCarInfoImportant | null>(null)
+
   useEffect(() => {
     const randomCar = localStorage.getItem("randomCar")
     if (randomCar) {
