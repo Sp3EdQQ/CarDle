@@ -82,13 +82,24 @@ export const SearchBar = ({ setCarInfo }: SearchBarProps) => {
 
   return (
     <div className="flex gap-x-3 text-black">
-      <Select options={makeOptions} onChange={handleMakeOnChange} value={selectedMake} />
       <Select
+        className="w-52"
+        options={makeOptions}
+        onChange={handleMakeOnChange}
+        value={selectedMake}
+      />
+      <Select
+        className="min-w-52 max-w-80"
         options={modelOptions}
         onChange={handleModelOnChange}
         value={selectedModel}
       />
-      <Select options={trimOptions} onChange={handleTrimOnChange} value={selectedTrim} />
+      <Select
+        className="min-w-72 max-w-80"
+        options={trimOptions}
+        onChange={handleTrimOnChange}
+        value={selectedTrim}
+      />
       <button
         className="rounded-md bg-gradient-to-r from-violet-600 to-purple-600 text-white py-1 px-2"
         onClick={() => {
