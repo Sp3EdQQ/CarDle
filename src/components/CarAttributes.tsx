@@ -1,22 +1,27 @@
 import { GetCarInfo, GetCarInfoImportant } from "../types/carInfo"
-import { useEffect, useState } from "react"
-import { GuessTile } from "./GuessTile"
+import { useEffect } from "react"
+import { GuessTile } from "./UtilityComponents/GuessTile.tsx"
+import { comparisonGuessCars } from "../utils/comparisonGuessCars.ts"
 
-const labels = ["Brand", "Model", "Year", "Horsepower", "Torque", "Cylinders", "Drive"]
-
+const labels = ["Brand", "Model", "Horsepower", "Torque", "Cylinders", "Drive"]
 const attributesLabelsClasses =
-  "rounded-t-lg grid grid-cols-7 w-full max-w-screen-xl text-lg font-bold py-7 *:text-center"
-const attributesStyle = "grid grid-cols-7 max-w-screen-xl *:mx-1"
+  "rounded-t-lg grid grid-cols-6 w-full max-w-screen-xl text-lg font-bold py-7 *:text-center"
+const attributesStyle = "grid grid-cols-6 max-w-screen-xl *:mx-1"
 
-export const CarAttributes = ({ carInfo }: { carInfo: GetCarInfo[] }) => {
-  const [RandomisedCar, setRandomisedCar] = useState<GetCarInfoImportant | null>(null)
-
+export const CarAttributes = ({
+  carInfo,
+  randomCar,
+  setIsWin
+}: {
+  randomCar: GetCarInfoImportant | null
+  carInfo: GetCarInfo[]
+  setIsWin: React.Dispatch<React.SetStateAction<boolean>>
+}) => {
   useEffect(() => {
-    const randomCar = localStorage.getItem("randomCar")
-    if (randomCar) {
-      setRandomisedCar(JSON.parse(randomCar))
+    if (comparisonGuessCars(carInfo[carInfo.length - 1], randomCar)) {
+      setIsWin(true)
     }
-  }, [])
+  }, [carInfo.length])
 
   return (
     <div className="flex flex-col gap-y-5 backdrop-blur pb-6 text-shadow">
@@ -26,37 +31,32 @@ export const CarAttributes = ({ carInfo }: { carInfo: GetCarInfo[] }) => {
         })}
       </div>
       <div className="flex flex-col w-full gap-y-4">
-        {carInfo.map(({ make_model, year, make_model_trim_engine }, index) => {
+        {carInfo.map(({ make_model, make_model_trim_engine }, index) => {
           return (
             <div key={index} className={attributesStyle}>
               <GuessTile
-                expectedValue={RandomisedCar?.make || ""}
+                expectedValue={randomCar?.make || ""}
                 value={make_model?.make?.name}
               />
-              <GuessTile
-                expectedValue={RandomisedCar?.model || ""}
-                value={make_model.name}
-              />
-
-              <GuessTile expectedValue={RandomisedCar?.year || ""} value={year} />
+              <GuessTile expectedValue={randomCar?.model || ""} value={make_model.name} />
 
               <GuessTile
-                expectedValue={RandomisedCar?.horsepower || ""}
+                expectedValue={randomCar?.horsepower || ""}
                 value={make_model_trim_engine.horsepower_hp}
               />
 
               <GuessTile
-                expectedValue={RandomisedCar?.torque || ""}
+                expectedValue={randomCar?.torque || ""}
                 value={make_model_trim_engine.torque_rpm}
               />
 
               <GuessTile
-                expectedValue={RandomisedCar?.cylinders || ""}
+                expectedValue={randomCar?.cylinders || ""}
                 value={make_model_trim_engine.cylinders}
               />
 
               <GuessTile
-                expectedValue={RandomisedCar?.drive || ""}
+                expectedValue={randomCar?.drive || ""}
                 value={make_model_trim_engine.drive_type}
               />
             </div>

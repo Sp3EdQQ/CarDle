@@ -1,0 +1,7 @@
+export const PromptWin = () => {
+  return (
+    <div className="bg-red-500">
+      APWSD;JFGIUOPSDHFIKJASDFNVBJKASDVBKJASDBNCJKHASBDVCJKHASDFBVJKASDHFIUHSDFIGHASDUYFGHASUYDFGSUDFYA
+    </div>
+  )
+}

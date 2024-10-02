@@ -42,6 +42,7 @@ export const useRandomCar = () => {
     if (randomMake) {
       setSelectedMake(randomMake)
       modelsMutation.mutate(randomMake)
+      localStorage.setItem("randomCar", JSON.stringify(randomCar))
     }
   }
 
