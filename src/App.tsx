@@ -12,6 +12,7 @@ const App = () => {
   const { randomCar, resetRandomSelection } = useRandomCar()
   const handleCar = () => {
     resetRandomSelection()
+    window.location.reload()
   }
 
   useEffect(() => {
