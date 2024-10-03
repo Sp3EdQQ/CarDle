@@ -1,12 +1,10 @@
-import { SearchBar } from "./components/SearchBar"
-import { CarAttributes } from "./components/CarAttributes"
-import { ColorsLegend } from "./components/ColorsLegend"
-import MainLogo from "./assets/images/Logo/logo-no-background.svg?react"
 import { useEffect, useState } from "react"
 import { GetCarInfo, GetCarInfoImportant } from "./types/carInfo"
-import { useRandomCar } from "./hooks/useRandomCar"
-import { GenerateRandomCarButton } from "./components/RandomButton.tsx"
-import Background from "./assets/images/Background/bg.webp"
+import { useRandomCar } from "@/hooks"
+import { GenerateRandomCarButton, ColorsLegend, CarAttributes, SearchBar } from "@/components"
+import Background from "./assets/images/bg.webp"
+import MainLogo from "./assets/images/logo-no-background.svg?react"
+
 import {
   AlertDialog,
   AlertDialogAction,

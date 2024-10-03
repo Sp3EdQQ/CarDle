@@ -1,8 +1,4 @@
-import { ArrowUp } from "../Tiles/ArrowUp.tsx"
-import { ArrowDown } from "../Tiles/ArrowDown.tsx"
-import { Correct } from "../Tiles/Correct.tsx"
-import { InCorrect } from "../Tiles/InCorrect.tsx"
-import { Undefined } from "../Tiles/Undefined.tsx"
+import {ArrowUp, ArrowDown, Correct, InCorrect, Undefined} from "@/components/Tiles"
 
 type GuessTileProps = {
   expectedValue: string | number

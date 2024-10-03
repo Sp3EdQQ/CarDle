@@ -1,12 +1,9 @@
 import { Dispatch, SetStateAction, useState } from "react"
-import { Model } from "../types/models"
 import Select, { SingleValue } from "react-select"
-import { Trim } from "../types/trims"
-import { useMakes } from "../hooks/useMakes"
-import { useModelsMutation } from "../hooks/useModelsMutation"
-import { useTrimMutation } from "../hooks/useTrimMutation"
-import { useParamMutation } from "../hooks/useParamMutation"
+import {useMakes, useModelsMutation, useTrimMutation, useParamMutation} from "@/hooks"
 import { GetCarInfo } from "../types/carInfo"
+import { Trim } from "../types/trims"
+import { Model } from "../types/models"
 
 type SelectMakeOption = {
   label: string

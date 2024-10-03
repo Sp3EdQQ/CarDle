@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react"
 import { GetCarInfo, GetCarInfoImportant } from "../types/carInfo"
-import { Trim } from "../types/trims"
 import { useParamMutation } from "./useParamMutation"
 import { useMakes } from "./useMakes"
-import { Model } from "../types/models"
 import { useModelsMutation } from "./useModelsMutation"
 import { useTrimMutation } from "./useTrimMutation"
+import { Model } from "../types/models"
+import { Trim } from "../types/trims"
 
 export const useRandomCar = () => {
   const [selectedMake, setSelectedMake] = useState("")
