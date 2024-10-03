@@ -1,4 +1,4 @@
-import { TileProps } from "../../types/types.ts"
+import { TileProps } from "@/types/types.ts"
 import { labelStyleRed } from "./constants.ts"
 
 export const InCorrect = ({ value }: TileProps) => {
