@@ -21,7 +21,7 @@ import {
 const App = () => {
   const [carInfo, setCarInfo] = useState<GetCarInfo[]>([])
   const { randomCar, resetRandomSelection } = useRandomCar()
-  const [localStorageHand, setLocalStorageHand] = useState<GetCarInfoImportant | null>(
+  const [localStorageStash, setLocalStorageStash] = useState<GetCarInfoImportant | null>(
     null
   )
   const [isWin, setIsWin] = useState<boolean>(false)
@@ -33,7 +33,7 @@ const App = () => {
 
   useEffect(() => {
     const savedCar = localStorage.getItem("randomCar")
-    if (savedCar) setLocalStorageHand(JSON.parse(savedCar))
+    if (savedCar) setLocalStorageStash(JSON.parse(savedCar))
     if (!savedCar) {
       resetRandomSelection()
     }
@@ -48,7 +48,7 @@ const App = () => {
       <ColorsLegend />
       <GenerateRandomCarButton onClick={handleCar} />
       <SearchBar setCarInfo={setCarInfo} />
-      <CarAttributes setIsWin={setIsWin} randomCar={localStorageHand} carInfo={carInfo} />
+      <CarAttributes setIsWin={setIsWin} randomCar={localStorageStash} carInfo={carInfo} />
       <AlertDialog open={isWin} onOpenChange={setIsWin}>
         <AlertDialogContent className="bg-neutral-800 text-white border border-neutral-400">
           <AlertDialogHeader>
