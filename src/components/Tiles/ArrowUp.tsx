@@ -1,4 +1,4 @@
-import { TileProps } from "@/types/types.ts"
+import { TileProps } from "@/types"
 import { cx } from "@/utils/cx.ts"
 import { labelStyleYellow } from "./constants.ts"
 import ArrowD from "../../assets/images/Tiles/arrow.svg?react"

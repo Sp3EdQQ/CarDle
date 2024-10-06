@@ -1,4 +1,4 @@
-import { labelStyleBlack } from "./constants.ts"
+import { labelStyleBlack } from "./constants"
 import QuestionMark from "@/assets/images/Tiles/questionMark.svg?react"
 
 export const Undefined = () => {

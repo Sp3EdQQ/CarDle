@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react"
-import { GetCarInfo, GetCarInfoImportant } from "./types/carInfo"
+import { GetCarInfo, GetCarInfoImportant } from "@/types"
 import { useRandomCar } from "@/hooks"
-import { GenerateRandomCarButton, ColorsLegend, CarAttributes, SearchBar } from "@/components"
+import {
+  CarAttributes,
+  ColorsLegend,
+  GenerateRandomCarButton,
+  SearchBar
+} from "@/components"
 import Background from "./assets/images/bg.webp"
 import MainLogo from "./assets/images/logo-no-background.svg?react"
 
@@ -46,7 +51,11 @@ const App = () => {
       <ColorsLegend />
       <GenerateRandomCarButton onClick={handleCar} />
       <SearchBar setCarInfo={setCarInfo} />
-      <CarAttributes setIsWin={setIsWin} randomCar={localStorageStash} carInfo={carInfo} />
+      <CarAttributes
+        setIsWin={setIsWin}
+        randomCar={localStorageStash}
+        carInfo={carInfo}
+      />
       <AlertDialog open={isWin} onOpenChange={setIsWin}>
         <AlertDialogContent className="bg-neutral-800 text-white border border-neutral-400">
           <AlertDialogHeader>
