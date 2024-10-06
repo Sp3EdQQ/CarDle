@@ -1,7 +1,7 @@
-import { GetCarInfo, GetCarInfoImportant } from "../types/carInfo"
+import { GetCarInfo, GetCarInfoImportant } from "@/types"
 import { useEffect } from "react"
-import { GuessTile } from "./UtilityComponents/GuessTile.tsx"
-import { comparisonGuessCars } from "../utils/comparisonGuessCars.ts"
+import { GuessTile } from "./UtilityComponents/GuessTile"
+import { comparisonGuessCars } from "../utils/comparisonGuessCars"
 
 const labels = ["Brand", "Model", "Horsepower", "Torque", "Cylinders", "Drive"]
 const attributesLabelsClasses =

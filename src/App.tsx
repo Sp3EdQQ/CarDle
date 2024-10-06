@@ -1,12 +1,15 @@
-import { SearchBar } from "./components/SearchBar"
-import { CarAttributes } from "./components/CarAttributes"
-import { ColorsLegend } from "./components/ColorsLegend"
-import MainLogo from "./assets/images/Logo/logo-no-background.svg?react"
 import { useEffect, useState } from "react"
-import { GetCarInfo, GetCarInfoImportant } from "./types/carInfo"
-import { useRandomCar } from "./hooks/useRandomCar"
-import { GenerateRandomCarButton } from "./components/RandomButton.tsx"
-import Background from "./assets/images/Background/bg.webp"
+import { GetCarInfo, GetCarInfoImportant } from "@/types"
+import { useRandomCar } from "@/hooks"
+import {
+  CarAttributes,
+  ColorsLegend,
+  GenerateRandomCarButton,
+  SearchBar
+} from "@/components"
+import Background from "./assets/images/bg.webp"
+import MainLogo from "./assets/images/logo-no-background.svg?react"
+
 import {
   AlertDialog,
   AlertDialogAction,
@@ -48,7 +51,11 @@ const App = () => {
       <ColorsLegend />
       <GenerateRandomCarButton onClick={handleCar} />
       <SearchBar setCarInfo={setCarInfo} />
-      <CarAttributes setIsWin={setIsWin} randomCar={localStorageStash} carInfo={carInfo} />
+      <CarAttributes
+        setIsWin={setIsWin}
+        randomCar={localStorageStash}
+        carInfo={carInfo}
+      />
       <AlertDialog open={isWin} onOpenChange={setIsWin}>
         <AlertDialogContent className="bg-neutral-800 text-white border border-neutral-400">
           <AlertDialogHeader>
