@@ -1,7 +1,7 @@
-import { cx } from "../../utils/cx.ts"
+import { cx } from "@/utils/cx"
 
 export const defaultLabelStyle =
-  "rounded-lg max-w-32 content-center text-center text-lg mx-auto uppercase aspect-square"
+  "rounded-lg lg:max-w-32 max-w-28 min-w-20 w-full content-center text-center uppercase aspect-square shrink-0"
 export const labelStyleGreen = cx(defaultLabelStyle, "bg-green-600")
 export const labelStyleRed = cx(defaultLabelStyle, "bg-red-500")
 export const labelStyleYellow = cx(defaultLabelStyle, "bg-orange-500")
