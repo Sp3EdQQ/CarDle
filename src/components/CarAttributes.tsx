@@ -5,7 +5,7 @@ import { comparisonGuessCars } from "../utils/comparisonGuessCars"
 
 const labels = ["Brand", "Model", "Horsepower", "Torque", "Cylinders", "Drive"]
 const attributesLabelsClasses =
-  "rounded-t-lg grid grid-cols-6 w-full max-w-screen-xl text-lg font-bold py-7 *:text-center"
+  "rounded-t-lg grid grid-cols-6 w-full max-w-screen-xl md:text-lg font-bold py-7 *:text-center"
 const attributesStyle = "grid grid-cols-6 max-w-screen-xl *:mx-1"
 
 export const CarAttributes = ({
