@@ -5,7 +5,6 @@ export const Undefined = () => {
   return (
     <div className={labelStyleBlack}>
       <QuestionMark />
-      <div>undefined</div>
     </div>
   )
 }

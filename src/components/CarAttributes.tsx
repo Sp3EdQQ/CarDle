@@ -21,9 +21,9 @@ export const CarAttributes = ({
   }, [carInfo.length])
 
   return (
-    <div className="flex flex-col md:items-start backdrop-blur pb-6 text-shadow w-full px-4">
-      <div className="overflow-x-auto w-full flex flex-col md:justify-between md:overflow-x-hidden ">
-        <div className="rounded-t-lg flex md:justify-center gap-x-3 lg:text-lg font-bold py-7 *:text-center">
+    <div className="flex flex-col text-shadow w-full px-4 md:items-start">
+      <div className="overflow-x-auto rounded-xl w-full max-w-[56rem] pb-4 mx-auto backdrop-blur flex flex-col md:justify-between md:overflow-x-hidden ">
+        <div className="flex gap-x-3 font-bold py-7 md:justify-center lg:text-lg *:text-center">
           {labels.map(label => {
             return (
               <div className="min-w-20 lg:max-w-32 max-w-28 shrink-0 w-full" key={label}>
