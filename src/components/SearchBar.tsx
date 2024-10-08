@@ -76,28 +76,28 @@ export const SearchBar = ({ setCarInfo }: SearchBarProps) => {
   }))
 
   return (
-    <div className="flex gap-x-3 text-black">
+    <div className="flex flex-col items-center text-black gap-3 lg:flex-row">
       <Select
-        className="w-52"
+        className="md:w-52"
         options={makeOptions}
         onChange={handleMakeOnChange}
         value={selectedMake}
       />
       <Select
-        className="min-w-52 max-w-80"
+        className="md:min-w-52 md:max-w-80"
         options={modelOptions}
         onChange={handleModelOnChange}
         value={selectedModel}
       />
       <Select
-        className="min-w-72 max-w-80"
+        className="md:min-w-72 md:max-w-80"
         options={trimOptions}
         onChange={handleTrimOnChange}
         value={selectedTrim}
       />
       <button
         // disabled same gradient bcs gradient overwrite disabled class while disabled lmao
-        className="disabled:from-gray-800 disabled:to-gray-800 rounded-md bg-gradient-to-r from-violet-600 to-purple-600 text-white py-1 px-2"
+        className="disabled:from-gray-800 disabled:to-gray-800 rounded-md bg-gradient-to-r from-violet-600 to-purple-600 text-white p-2 max-w-20"
         disabled={!selectedMake || !selectedModel || !selectedTrim}
         onClick={() => {
           paramMutation.mutate(selectedTrim?.value)
