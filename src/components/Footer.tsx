@@ -7,7 +7,7 @@ export const Footer = () => {
           <div className="flex flex-wrap text-neutral-400">
             The cars are generated via an API, and their model year is 2019. When
             guessing, it is not necessary to select the same engine version and drive of
-            the car.
+            the car. It is only important if there occurs another param value e.g. HP.
           </div>
         </div>
         <div className="w-1/2 flex flex-wrap flex-col items-center">
