@@ -20,6 +20,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle
 } from "@/components/ui/alert-dialog"
+import { Footer } from "@/components/Footer.tsx"
 
 const App = () => {
   const [carInfo, setCarInfo] = useState<GetCarInfo[]>([])
@@ -45,7 +46,7 @@ const App = () => {
   return (
     <div
       style={{ backgroundImage: `url(${Background})` }}
-      className="bg-fixed bg-cover min-h-dvh gap-y-5 flex flex-col items-center text-slate-50"
+      className="bg-fixed bg-cover min-h-dvh gap-y-5 flex flex-col items-center text-slate-50 font-mono"
     >
       <MainLogo className="size-1/3 my-3" />
       <ColorsLegend />
@@ -56,6 +57,8 @@ const App = () => {
         randomCar={localStorageStash}
         carInfo={carInfo}
       />
+      <div className="m-44" />
+      <Footer />
       <AlertDialog open={isWin} onOpenChange={setIsWin}>
         <AlertDialogContent className="bg-neutral-800 text-white border border-neutral-400">
           <AlertDialogHeader>

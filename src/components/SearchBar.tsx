@@ -82,18 +82,21 @@ export const SearchBar = ({ setCarInfo }: SearchBarProps) => {
         options={makeOptions}
         onChange={handleMakeOnChange}
         value={selectedMake}
+        placeholder="Make"
       />
       <Select
         className="md:min-w-52 md:max-w-80"
         options={modelOptions}
         onChange={handleModelOnChange}
         value={selectedModel}
+        placeholder="Model"
       />
       <Select
         className="md:min-w-72 md:max-w-80"
         options={trimOptions}
         onChange={handleTrimOnChange}
         value={selectedTrim}
+        placeholder="Specification"
       />
       <button
         // disabled same gradient bcs gradient overwrite disabled class while disabled lmao
