@@ -37,6 +37,10 @@ CarDle is a guessing game where players try to identify a randomly generated car
 
 ### Requirements
 - **Node.js**
-- **NPM**  
+- **NPM**
+- **API key from rapidapi**
+
+### Preview
+![image](https://github.com/user-attachments/assets/22d32a0b-9dbd-43e2-955d-1239f5bd81b9)
 
 🚀 Enjoy!
